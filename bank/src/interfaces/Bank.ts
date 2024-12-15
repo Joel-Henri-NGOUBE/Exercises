@@ -6,7 +6,8 @@ export interface IBank{
     // clients: ClientProperties[],
     addClient: (client: Client) => void,
     removeClient: (client: Client) => void,
-    getClients: () => Client[],
+    getClients: () => string,
+    // getClients: () => Client[],
     getTotalBalances: () => number,
     requestBankCard: (client: Client) => void
 }

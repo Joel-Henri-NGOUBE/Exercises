@@ -1,3 +1,4 @@
+import { Bank } from "../entities/Bank"
 import { BankAccount } from "../entities/BankAccount"
 
 export interface IClient{
@@ -7,8 +8,8 @@ export interface IClient{
     city: string,
     job: string,
     salary: number,
-    consult:() => BankAccount | string,
-    deposit: (amount: number) => void
-    withdraw: (amount: number) => void
-    requestBankCard: () => void
+    consult:(bank: Bank) => BankAccount | string,
+    deposit: (bank: Bank,amount: number) => void
+    withdraw: (bank: Bank,amount: number) => void
+    requestBankCard: (bank: Bank) => void
 }

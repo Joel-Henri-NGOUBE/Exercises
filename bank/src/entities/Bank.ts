@@ -23,7 +23,7 @@ export class Bank implements IBank{
     addClient(client: Client){
         const newClient: ClientProperties = {
             client: client,
-            bankAccount: new BankAccount(client, Math.floor(Math.random()*10000000000000)),
+            bankAccount: new BankAccount(client, Math.floor(Math.random()*10000000000000).toString(), client.initialBalance),
             // bankCard: null
         }
         this.clientsProperties.push(newClient)
@@ -31,11 +31,13 @@ export class Bank implements IBank{
 
     removeClient(client: Client){
         const indexOfclientToRemove = this.clientsProperties.findIndex(cP => cP.client === client)
-        this.clientsProperties = this.clientsProperties.filter((cP, i) => i === indexOfclientToRemove)
+        // console.log(indexOfclientToRemove)
+        this.clientsProperties = this.clientsProperties.filter((cP, i) => i !== indexOfclientToRemove)
     }
 
     getClients(){
-        return this.clientsProperties.map((cP) => cP.client)
+        const clients = this.clientsProperties.map((cP) => cP.client.name + " " + cP.client.surname)
+        return `Les clients de ${this.name} sont:\n${clients.join("\n")}`
     }
 
     getTotalBalances(){
@@ -65,12 +67,17 @@ export class Bank implements IBank{
         // this.clientsProperties.
         const indexOfclientToRemove = this.clientsProperties.findIndex(cP => cP.client === client)
         // this.clientsProperties[indexOfclientToRemove].bankCard = new BankCard(Math.random() * 10000000000000000, "", Math.random() * 100)
-        this.clientsProperties[indexOfclientToRemove].bankAccount.bankCard = new BankCard(Math.random() * 10000000000000000, "", Math.random() * 100)
+        this.clientsProperties[indexOfclientToRemove].bankAccount.bankCard = new BankCard((Math.floor(Math.random()*1_000_0000_000_000_000)).toString(), "", Math.random() * 100)
         // = this.clientsProperties.map((cP, i) => {
         //     if(i === indexOfclientToRemove){
 
         // }})
         // client.requestBankCard()
+    }
+
+    getCardInformations(client: Client){
+        const indexOfclientToRemove = this.clientsProperties.findIndex(cP => cP.client === client)
+        return this.clientsProperties[indexOfclientToRemove].bankAccount.bankCard?.getCardInformations()
     }
 
 }

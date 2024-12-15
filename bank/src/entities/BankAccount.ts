@@ -3,12 +3,12 @@ import { Client } from "./Client";
 
 
 export class BankAccount{
-    public balance: number = 0
     public bankCard: BankCard | null = null
-
+    
     constructor(
         public client: Client,
-        public accountNumber: number,
+        public accountNumber: string,
+        public balance: number = 0
     ){
 
     }

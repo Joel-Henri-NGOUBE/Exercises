@@ -11,28 +11,32 @@ export class Client implements IClient{
         public city: string,
         public job: string,
         public salary: number,
-        private initialBalance: number,
-        private bank: Bank
+        public initialBalance: number,
+        // private bank: Bank
     ){
 
     }
 
-    consult(){
+    consult(bank: Bank){
         // Consulter directement via le client
         // Consulter via la banque (probablement ça)
         // this.bank.consult(this)
-        return this.bank.consult(this)
+        return bank.consult(this)
     }
 
-    deposit(amount: number){
-        this.bank.deposit(this, amount)
+    deposit(bank: Bank,amount: number){
+        bank.deposit(this, amount)
     }
 
-    withdraw(amount: number){
-        this.bank.withdraw(amount)
+    withdraw(bank: Bank,amount: number){
+        bank.withdraw(this, amount)
     }
 
-    requestBankCard(){
-        this.bank.requestBankCard(this)
+    getCardInformations(bank: Bank){
+        return bank.getCardInformations(this)
+    }
+
+    requestBankCard(bank: Bank){
+        bank.requestBankCard(this)
     }
 }
