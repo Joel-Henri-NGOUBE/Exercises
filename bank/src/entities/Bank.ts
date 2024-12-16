@@ -67,7 +67,7 @@ export class Bank implements IBank{
         // this.clientsProperties.
         const indexOfclientToRemove = this.clientsProperties.findIndex(cP => cP.client === client)
         // this.clientsProperties[indexOfclientToRemove].bankCard = new BankCard(Math.random() * 10000000000000000, "", Math.random() * 100)
-        this.clientsProperties[indexOfclientToRemove].bankAccount.bankCard = new BankCard((Math.floor(Math.random()*1_000_0000_000_000_000)).toString(), "", Math.random() * 100)
+        this.clientsProperties[indexOfclientToRemove].bankAccount.bankCard = new BankCard((Math.floor(Math.random()*1_000_0000_000_000_000)).toString(), (new Date(2025, 4)).toLocaleDateString("en-US", {year: "2-digit", month: "2-digit"}), Math.floor(Math.random() * 1000))
         // = this.clientsProperties.map((cP, i) => {
         //     if(i === indexOfclientToRemove){
 
